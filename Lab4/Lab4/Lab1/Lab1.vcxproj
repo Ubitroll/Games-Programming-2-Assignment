@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D246FDDF-B30E-4F14-80F8-095FA4E04ECF}</ProjectGuid>
     <RootNamespace>Lab1</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -71,25 +71,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainGame.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="obj_loader.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="MeshMaker.cpp" />
+    <ClCompile Include="ObjectLoader.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stb_image.c" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Display.h" />
-    <ClInclude Include="MainGame.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="obj_loader.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="View.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="GameMain.h" />
+    <ClInclude Include="MeshMaker.h" />
+    <ClInclude Include="ObjectLoader.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="transform.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TransformManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\res\shader.frag" />
