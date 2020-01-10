@@ -10,6 +10,7 @@ static inline unsigned int ParseOBJIndexValue(const std::string& token, unsigned
 static inline float ParseOBJFloatValue(const std::string& token, unsigned int start, unsigned int end);
 static inline std::vector<std::string> SplitString(const std::string &s, char delim);
 
+// Method to set OBJ model
 OBJModel::OBJModel(const std::string& fileName)
 {
 	hasUVs = false;
@@ -54,6 +55,7 @@ OBJModel::OBJModel(const std::string& fileName)
     }
 }
 
+// Method to caluclate normals for light
 void IndexedModel::CalcNormals()
 {
     for(unsigned int i = 0; i < indices.size(); i += 3)
@@ -76,6 +78,7 @@ void IndexedModel::CalcNormals()
         normals[i] = glm::normalize(normals[i]);
 }
 
+// Method to index the model
 IndexedModel OBJModel::ToIndexedModel()
 {
     IndexedModel result;
@@ -158,6 +161,7 @@ IndexedModel OBJModel::ToIndexedModel()
     return result;
 };
 
+// Method to find last vertex index
 unsigned int OBJModel::FindLastVertexIndex(const std::vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const IndexedModel& result)
 {
     unsigned int start = 0;
@@ -197,31 +201,31 @@ unsigned int OBJModel::FindLastVertexIndex(const std::vector<OBJIndex*>& indexLo
                     break;
                 else if((!hasUVs || possibleIndex->uvIndex == currentIndex->uvIndex) 
                     && (!hasNormals || possibleIndex->normalIndex == currentIndex->normalIndex))
-                {
-                    glm::vec3 currentPosition = vertices[currentIndex->vertexIndex];
-                    glm::vec2 currentTexCoord;
-                    glm::vec3 currentNormal;
+				     {
+							glm::vec3 currentPosition = vertices[currentIndex->vertexIndex];
+							glm::vec2 currentTexCoord;
+							glm::vec3 currentNormal;
                     
-                    if(hasUVs)
-                        currentTexCoord = uvs[currentIndex->uvIndex];
-                    else
-                        currentTexCoord = glm::vec2(0,0);
+							if(hasUVs)
+								currentTexCoord = uvs[currentIndex->uvIndex];
+							else
+								currentTexCoord = glm::vec2(0,0);
                         
-                    if(hasNormals)
-                        currentNormal = normals[currentIndex->normalIndex];
-                    else
-                        currentNormal = glm::vec3(0,0,0);
+							if(hasNormals)
+								currentNormal = normals[currentIndex->normalIndex];
+							else
+								currentNormal = glm::vec3(0,0,0);
                     
-                    for(unsigned int j = 0; j < result.positions.size(); j++)
-                    {
-                        if(currentPosition == result.positions[j] 
-                            && ((!hasUVs || currentTexCoord == result.texCoords[j])
-                            && (!hasNormals || currentNormal == result.normals[j])))
-                        {
-                            return j;
-                        }
-                    }
-                }
+							for(unsigned int j = 0; j < result.positions.size(); j++)
+							{
+								if(currentPosition == result.positions[j] 
+									&& ((!hasUVs || currentTexCoord == result.texCoords[j])
+									&& (!hasNormals || currentNormal == result.normals[j])))
+								{
+									return j;
+								}
+							}
+					 }
             }
         
             return -1;
@@ -241,6 +245,7 @@ unsigned int OBJModel::FindLastVertexIndex(const std::vector<OBJIndex*>& indexLo
     return -1;
 }
 
+// Creats the objects face by parsing the vertex index
 void OBJModel::CreateOBJFace(const std::string& line)
 {
     std::vector<std::string> tokens = SplitString(line, ' ');

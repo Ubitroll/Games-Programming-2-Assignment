@@ -4,13 +4,15 @@
 Audio::Audio()
 {
 	device = alcOpenDevice(NULL); //open sound card
+	// If a device isnt found ouput error message
 	if (device == NULL)
 	{
 		std::cout << "cannot open sound card" << std::endl;
 	}
 
-	context = alcCreateContext(device, NULL);
+	context = alcCreateContext(device, NULL); // Generates context
 
+	// If context isnt given output error message
 	if (context == NULL)
 	{
 		std::cout << "cannot open context" << std::endl;
@@ -21,6 +23,7 @@ Audio::Audio()
 
 Audio::~Audio()
 {
+	// Delete all sounds and their buffers
 	for (unsigned int i = 0; i < datas.size(); i++)
 	{
 		alDeleteSources(1, (unsigned int*)&datas[i].sourceID);
@@ -30,16 +33,20 @@ Audio::~Audio()
 			delete[] datas[i].buffer;
 		}
 	}
+	// Destroy context
 	alcDestroyContext(context);
+	// Close sound card
 	alcCloseDevice(device);
 }
 
+// Sets up BigEndian
 bool Audio::isBigEndian()
 {
 	int a = 1;
 	return !((char*)&a)[0];
 }
 
+// Converts to in
 int Audio::convertToInt(char* buffer, int length)
 {
 	int a = 0;
@@ -52,6 +59,7 @@ int Audio::convertToInt(char* buffer, int length)
 	return a;
 }
 
+// Loads wav file
 char* Audio::loadWAV(const char* fn, int& chan, int& samplerate, int& bps, int& size)
 {
 	char buffer[4];
@@ -79,6 +87,7 @@ char* Audio::loadWAV(const char* fn, int& chan, int& samplerate, int& bps, int& 
 	return soundData;
 }
 
+// Loads sound
 unsigned int Audio::loadSound(const char* filename)
 {
 	bool found = false;
@@ -135,20 +144,26 @@ unsigned int Audio::loadSound(const char* filename)
 
 void Audio::deleteSound(unsigned int id) 
 {}
-
+// Plays sound
 void Audio::playSound(unsigned int id) 
 {
 	alSourcePlay(id);
 }
+
+// Plays sound from source point
 void Audio::playSound(unsigned int id, glm::vec3& pos) 
 {
 	alSource3f(id, AL_POSITION, pos.x, pos.y, pos.z);
 	alSourcePlay(id);
 }
+
+// stops sound
 void Audio::stopSound(unsigned int id) 
 {
 	alSourceStop(id);
 }
+
+// Sets listener
 void Audio::setlistener(glm::vec3& pos, glm::vec3& camLookAt) 
 {
 	alListener3f(AL_POSITION, pos.x, pos.y, -pos.z);

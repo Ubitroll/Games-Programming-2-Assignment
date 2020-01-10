@@ -12,9 +12,9 @@ public:
 	void Bind(); //Set gpu to use our shaders
 	void Update(const Transform& transform, const Camera& camera);
 
-	std::string Shader::LoadShader(const std::string& fileName);
-	void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
-	GLuint Shader::CreateShader(const std::string& text, unsigned int type);
+	std::string Shader::LoadShader(const std::string& fileName); // loads shader
+	void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage); // checks for error in shader
+	GLuint Shader::CreateShader(const std::string& text, unsigned int type); // creates shader
 
     ~Shader();
 

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
+// Struct for Obj index
 struct OBJIndex
 {
     unsigned int vertexIndex;
@@ -14,6 +15,7 @@ struct OBJIndex
     bool operator<(const OBJIndex& r) const { return vertexIndex < r.vertexIndex; }
 };
 
+// Class to index the model
 class IndexedModel
 {
 public:
@@ -25,6 +27,7 @@ public:
     void CalcNormals();
 };
 
+// Class for Obj Models
 class OBJModel
 {
 public:
@@ -35,7 +38,7 @@ public:
     bool hasUVs;
     bool hasNormals;
     
-    OBJModel(const std::string& fileName);
+    OBJModel(const std::string& fileName); // Method to set OBJ model
     
     IndexedModel ToIndexedModel();
 private:

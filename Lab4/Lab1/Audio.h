@@ -13,6 +13,7 @@
 
 class Audio
 {
+	// Set Up data Strut for audio buffer
 	struct data {
 		int sourceID, bufferID;
 		char* buffer;
@@ -27,12 +28,15 @@ class Audio
 
 	};
 
+	// Creates a point in 3D space with coordinates x, y, z
 	struct Vector3
 	{
 		float x, y, z;
 	};
+
+	// Loads OpenAL
 	std::vector<data> datas;
-	ALCcontext* context;
+	ALCcontext* context; //used to set up context
 	ALCdevice *device;
 	bool isBigEndian();
 	int convertToInt(char* buffer, int length);
@@ -41,12 +45,12 @@ class Audio
 public:
 	Audio();
 	~Audio();
-	unsigned int loadSound(const char* filename);
-	void deleteSound(unsigned int id);
-	void playSound(unsigned int id);
-	void playSound(unsigned int id, glm::vec3& pos);
-	void stopSound(unsigned int id);
-	void setlistener(glm::vec3& pos, glm::vec3& camLookAt);
+	unsigned int loadSound(const char* filename); // Method to laod sound
+	void deleteSound(unsigned int id); // Method to delete sound
+	void playSound(unsigned int id); // Method to play sounds
+	void playSound(unsigned int id, glm::vec3& pos); // Method to play sounds from a specific location
+	void stopSound(unsigned int id); // Method to stop sound
+	void setlistener(glm::vec3& pos, glm::vec3& camLookAt); // Method to set Listener
 
 private:
 	

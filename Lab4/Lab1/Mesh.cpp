@@ -1,7 +1,7 @@
 #include "Mesh.h"
 #include <vector>
 
-
+// Method to inialises the mesh by indexing the model and finds its vertices before loading the model
 void Mesh::init(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices)
 {
 	IndexedModel model;
@@ -19,6 +19,7 @@ void Mesh::init(Vertex* vertices, unsigned int numVertices, unsigned int* indice
 	initModel(model);
 }
 
+// Method to initialise model
 void Mesh::initModel(const IndexedModel& model)
 {
 
@@ -55,6 +56,7 @@ Mesh::Mesh()
 	drawCount = NULL;
 }
 
+// Method to load model
 void Mesh::loadModel(const std::string& filename)
 {
 	IndexedModel model = OBJModel(filename).ToIndexedModel();
@@ -67,6 +69,7 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &vertexArrayObject); // delete arrays
 }
 
+// Method to draw mesh
 void Mesh::draw()
 {
 	glBindVertexArray(vertexArrayObject);

@@ -10,6 +10,7 @@ public:
 	{
 	}
 
+	// Initialises the Camera
 	void initCamera(const glm::vec3& pos, float fov, float aspect, float nearClip, float farClip)
 	{
 		this->pos = pos;
@@ -18,26 +19,31 @@ public:
 		this->projection = glm::perspective(fov, aspect, nearClip, farClip);
 	}
 
+	// Retrieves the current postion of the camera
 	glm::vec3 getPos()
 	{
 		return this->pos;
 	}
 
+	// Retrieves the view projection
 	inline glm::mat4 GetViewProjection() const
 	{
 		return projection * glm::lookAt(pos, pos + forward, up);
 	}
 
+	// Moves forward
 	void MoveForward(float amt)
 	{
 		pos += forward * amt;
 	}
 
+	// Moves right
 	void MoveRight(float amt)
 	{
 		pos += glm::cross(up, forward) * amt;
 	}
 
+	// Moves the pitch
 	void Pitch(float angle)
 	{
 		glm::vec3 right = glm::normalize(glm::cross(up, forward));
@@ -46,6 +52,7 @@ public:
 		up = glm::normalize(glm::cross(forward, right));
 	}
 
+	// Rotates on the Y axis
 	void RotateY(float angle)
 	{
 		static const glm::vec3 UP(0.0f, 1.0f, 0.0f);

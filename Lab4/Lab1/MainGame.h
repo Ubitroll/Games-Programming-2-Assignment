@@ -20,13 +20,14 @@ public:
 
 private:
 
-	void initSystems();
-	void processInput();
-	void gameLoop();
-	void drawGame();
-	bool collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2Rad);
-	void playAudio(unsigned int Source, glm::vec3 pos);
+	void initSystems(); // Initialises the games systems
+	void processInput(); // Processes the player inputs
+	void gameLoop(); // Creates game loop
+	void drawGame(); // Draws game
+	bool collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2Rad); // Generates collisions
+	void playAudio(unsigned int Source, glm::vec3 pos); // Plays an audio
 
+	// Variables
 	Display _gameDisplay;
 	GameState _gameState;
 	Mesh mesh1;

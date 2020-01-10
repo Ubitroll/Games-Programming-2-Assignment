@@ -69,6 +69,7 @@ GLuint Shader::CreateShader(const std::string& text, unsigned int type)
 	return shader;
 }
 
+// Method to load shader
 std::string Shader::LoadShader(const std::string& fileName)
 {
 	std::ifstream file;
@@ -93,6 +94,7 @@ std::string Shader::LoadShader(const std::string& fileName)
 	return output;
 }
 
+// Method to check for a shader error
 void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
 	GLint success = 0;

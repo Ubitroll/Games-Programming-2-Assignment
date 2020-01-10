@@ -7,6 +7,7 @@
 struct Vertex
 {
 public:
+	// Generates a vertex point
 	Vertex(const glm::vec3& pos, const glm::vec2& texCoord)
 	{
 		this->pos = pos;
@@ -30,6 +31,7 @@ public:
 
 	Sphere() {}
 
+	// Metho to make sphere
 	Sphere(glm::vec3& pos, float radius)
 	{
 		this->pos = pos;
@@ -38,11 +40,13 @@ public:
 	glm::vec3 GetPos() { return pos; }
 	float GetRadius() { return radius; }
 
+	// Sets position
 	void SetPos(glm::vec3 pos)
 	{
 		this->pos = pos;
 	}
 
+	// Sets radius
 	void SetRadius(float radius)
 	{
 		this->radius = radius;
@@ -60,12 +64,12 @@ public:
 	~Mesh();
 
 
-	void draw();
+	void draw(); // Method to draw mesh
 	void init(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
-	void loadModel(const std::string& filename);
-	void initModel(const IndexedModel& model);
-	void updateSphereData(glm::vec3 pos, float radius);
-	glm::vec3 getSpherePos() { return meshSphere.GetPos(); }
+	void loadModel(const std::string& filename); // Method to laod model
+	void initModel(const IndexedModel& model); // method to initialise method
+	void updateSphereData(glm::vec3 pos, float radius); // Method to update sphere data
+	glm::vec3 getSpherePos() { return meshSphere.GetPos(); } 
 	float getSphereRadius() { return meshSphere.GetRadius(); }
 
 private:
