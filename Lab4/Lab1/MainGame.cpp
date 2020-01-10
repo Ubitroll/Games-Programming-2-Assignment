@@ -12,6 +12,7 @@ MainGame::MainGame()
 	Display* _gameDisplay = new Display(); //new display
     Mesh* mesh1();
 	Mesh* mesh2();
+	Mesh* mesh3();
 	Audio* audioDevice();
 }
 
@@ -32,7 +33,9 @@ void MainGame::initSystems()
 	backGroundMusic = audioDevice.loadSound("..\\res\\background.wav");
 	
 	mesh1.loadModel("..\\res\\monkey3.obj");
-	mesh2.loadModel("..\\res\\monkey3.obj");
+	mesh2.loadModel("..\\res\\kanga.obj");
+	mesh3.loadModel("..\\res\\Doglowpolymodal.obj");
+	
 	
 	myCamera.initCamera(glm::vec3(0, 0, -5), 70.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
 
@@ -131,6 +134,12 @@ void MainGame::drawGame()
 	mesh2.updateSphereData(*transform.GetPos(), 0.62f);
 	counter = counter + 0.05f;
 
+	shader.Bind();
+	shader.Update(transform, myCamera);
+	texture.Bind(0);
+	mesh3.draw();
+	mesh3.updateSphereData(*transform.GetPos(), -0.62f);
+	counter = counter + 0.05f;
 				
 	glEnableClientState(GL_COLOR_ARRAY); 
 	glEnd();

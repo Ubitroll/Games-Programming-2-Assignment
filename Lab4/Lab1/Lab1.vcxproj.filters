@@ -87,5 +87,11 @@
     <Object Include="..\res\monkey3.obj">
       <Filter>Resource Files</Filter>
     </Object>
+    <Object Include="..\res\Doglowpolymodal.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
+    <Object Include="..\res\kanga.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
   </ItemGroup>
 </Project>
